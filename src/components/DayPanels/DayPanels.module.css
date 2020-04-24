@@ -1,0 +1,11 @@
+.DayPanels {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .DayPanels {
+    flex-direction: column;
+  }
+}

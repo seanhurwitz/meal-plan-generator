@@ -1,0 +1,49 @@
+.Meal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 210px;
+  margin: 2px;
+}
+.Meal h5 {
+  background-color: mediumslateblue;
+  color: antiquewhite;
+  height: 25px;
+  margin: 0;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.Meal form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.Meal input {
+  border: none;
+  margin-bottom: 2px;
+  height: 20px;
+  color: mediumslateblue;
+}
+
+.Meal input[type='submit']:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+.Meal input[type='submit']:disabled {
+  background-color: rgb(236, 236, 236);
+  color: white;
+}
+.Meal div div:nth-child(even) {
+  background-color: rgb(240, 238, 232);
+}
+
+.MealChoiceBox {
+  height: 150px;
+  margin: 0;
+  overflow: auto;
+}

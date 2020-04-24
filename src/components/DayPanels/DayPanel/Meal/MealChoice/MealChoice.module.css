@@ -1,0 +1,26 @@
+.MealChoice {
+  display: flex;
+  padding: 0 4px;
+  justify-content: space-between;
+  vertical-align: middle;
+  align-items: center;
+  font-size: 12px;
+  height: 22px;
+}
+
+.Cancel {
+  cursor: pointer;
+  border: 1px solid lightcoral;
+  padding: 1px;
+  border-radius: 100px;
+  width: 12px;
+  height: 12px;
+  color: lightcoral;
+  font-size: 10px;
+}
+
+.Cancel:hover {
+  font-weight: bold;
+  background-color: lightcoral;
+  color: antiquewhite;
+}

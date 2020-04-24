@@ -1,0 +1,36 @@
+.MasterPlan {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  vertical-align: middle;
+}
+.Plan {
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  margin: 5px;
+  width: 350px;
+  height: 280px;
+}
+.Plan h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: mediumslateblue;
+  color: antiquewhite;
+  margin: 0;
+  height: 50px;
+}
+
+.Plan h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(235, 232, 255);
+  color: rgb(73, 61, 100);
+  margin: 0;
+  height: 35px;
+}
