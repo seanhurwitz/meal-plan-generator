@@ -1,49 +1,14 @@
-import React, { Fragment, Component } from 'react';
-import axios from './axios-instances';
-import { Header, Modal, Plan } from './components';
-import { Body } from './containers';
-import './App.css';
+import React, { Fragment, Component } from "react";
+import axios from "./axios-instances";
+import { Header, Modal, Plan } from "./components";
+import { Body } from "./containers";
+import "./App.css";
+import generateStartingData from "./generate-starting-data";
 
 class App extends Component {
   state = {
-    days: {
-      monday: {
-        breakfast: ['Bran Flakes and Milo'],
-        lunch: ['Fruit and Veg'],
-        supper: ['Tuna Lasagne', 'Spaghetti Bolognaise'],
-      },
-      tuesday: {
-        breakfast: ['Bran Flakes and Milo'],
-        lunch: ['Fruit and Veg'],
-        supper: ['Tuna Lasagne', 'Spaghetti Bolognaise'],
-      },
-      wednesday: {
-        breakfast: ['Bran Flakes and Milo'],
-        lunch: ['Fruit and Veg'],
-        supper: ['Tuna Lasagne', 'Spaghetti Bolognaise'],
-      },
-      thursday: {
-        breakfast: ['Bran Flakes and Milo'],
-        lunch: ['Fruit and Veg'],
-        supper: ['Tuna Lasagne', 'Spaghetti Bolognaise'],
-      },
-      friday: {
-        breakfast: ['Bran Flakes and Milo'],
-        lunch: ['Fruit and Veg'],
-        supper: ['Tuna Lasagne', 'Spaghetti Bolognaise'],
-      },
-      saturday: {
-        breakfast: ['Chocolate Muesli', 'Berry Muesli', 'Biscuits and Nosh'],
-        lunch: ['Fruit and Veg'],
-        supper: ['Tuna Lasagne', 'Spaghetti Bolognaise'],
-      },
-      sunday: {
-        breakfast: ['Bran Flakes and Milo'],
-        lunch: ['Fruit and Veg'],
-        supper: ['Tuna Lasagne', 'Spaghetti Bolognaise'],
-      },
-    },
-    planType: 'Today',
+    days: generateStartingData(),
+    planType: "Today",
     showPlan: false,
   };
 
