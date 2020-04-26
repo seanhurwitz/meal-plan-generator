@@ -14,7 +14,7 @@ class App extends Component {
 
   componentDidMount() {
     const days = JSON.parse(localStorage.getItem("days"));
-    if (typeof days === "object") {
+    if (typeof days === "object" && days) {
       this.setState({ days });
     }
   }
