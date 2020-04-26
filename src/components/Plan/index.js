@@ -1,15 +1,15 @@
-import React from 'react';
-import classes from './Plan.module.css';
+import React from "react";
+import classes from "./Plan.module.css";
 
 const plan = (props) => {
   const days = [
-    'sunday',
-    'monday',
-    'tuesday',
-    'wednesday',
-    'thursday',
-    'friday',
-    'saturday',
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
   ];
   const today = days[new Date(Date.now()).getDay()];
   const planSet = Object.keys(props.meals).map((day) => ({
@@ -17,7 +17,7 @@ const plan = (props) => {
     meals: props.meals[day],
   }));
   const plan =
-    props.type === 'Weekly'
+    props.type === "Weekly"
       ? planSet
       : planSet.filter((dayPlan) => dayPlan.day === today);
 
@@ -25,7 +25,7 @@ const plan = (props) => {
     <div className={classes.MasterPlan}>
       {plan.map((day) => (
         <div key={day.day} className={classes.Plan}>
-          <h1>FOR {day.day}</h1>
+          <h1>{day.day}</h1>
           {Object.keys(day.meals).map((meal) => (
             <div key={meal}>
               <h2>{meal}</h2>

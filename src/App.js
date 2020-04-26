@@ -12,21 +12,23 @@ class App extends Component {
     showPlan: false,
   };
 
-  // componentDidMount() {
-  //   axios.get('/data.json').then((res) => {
-  //     const days = Object.values(res.data)[0].days;
-  //     this.setState({ days });
-  //   });
-  // }
+  componentDidMount() {
+    const days = JSON.parse(localStorage.getItem("days"));
+    if (typeof days === "object") {
+      this.setState({ days });
+    }
+  }
 
   addMealHandler = (day, meal, newMeal) => {
     const days = { ...this.state.days };
     days[day][meal].push(newMeal);
+    localStorage.setItem("days", JSON.stringify(days));
     this.setState({ days });
   };
   removeMealHandler = (day, meal, choice) => {
     const days = { ...this.state.days };
     days[day][meal].splice(days[day][meal].indexOf(choice), 1);
+    localStorage.setItem("days", JSON.stringify(days));
     this.setState({ days });
   };
   changePlanHandler = (type) => {
