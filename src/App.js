@@ -1,6 +1,6 @@
-import React, { Fragment, Component } from "react";
-import axios from "./axios-instances";
-import { Header, Modal, Plan } from "./components";
+import React, { Component } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Header, Modal, Plan, Footer } from "./components";
 import { Body } from "./containers";
 import "./App.css";
 import generateStartingData from "./generate-starting-data";
@@ -40,7 +40,7 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
+      <BrowserRouter>
         <Modal show={this.state.showPlan} clicked={this.generatePlanHandler}>
           <Plan meals={this.state.days} type={this.state.planType} />
         </Modal>
@@ -53,8 +53,8 @@ class App extends Component {
           addMeal={this.addMealHandler}
           removeMeal={this.removeMealHandler}
         />
-        <div>Footer</div>
-      </Fragment>
+        <Footer />
+      </BrowserRouter>
     );
   }
 }
