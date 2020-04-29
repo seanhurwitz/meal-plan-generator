@@ -1,0 +1,9 @@
+.Settings {
+  margin-top: 60px;
+}
+
+@media (max-width: 700px) {
+  .Settings {
+    margin-top: 80px;
+  }
+}

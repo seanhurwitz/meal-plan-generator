@@ -1,34 +1,37 @@
-import React, { Component } from "react";
-import { BrowserRouter } from "react-router-dom";
-import { Header, Modal, Plan, Footer } from "./components";
-import { Body } from "./containers";
-import "./App.css";
-import generateStartingData from "./generate-starting-data";
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Header, Modal, Plan, Footer, Spinner } from './components';
+import { Body, Settings } from './containers';
+import './App.css';
+import generateStartingData from './generate-starting-data';
 
 class App extends Component {
   state = {
-    days: generateStartingData(),
-    planType: "Today",
+    days: null,
+    planType: 'Today',
     showPlan: false,
   };
 
   componentDidMount() {
-    const days = JSON.parse(localStorage.getItem("days"));
-    if (typeof days === "object" && days) {
+    console.log('mounted');
+    const days = JSON.parse(localStorage.getItem('days'));
+    if (typeof days === 'object' && days) {
       this.setState({ days });
+    } else {
+      this.setState({ days: generateStartingData() });
     }
   }
 
   addMealHandler = (day, meal, newMeal) => {
     const days = { ...this.state.days };
     days[day][meal].push(newMeal);
-    localStorage.setItem("days", JSON.stringify(days));
+    localStorage.setItem('days', JSON.stringify(days));
     this.setState({ days });
   };
   removeMealHandler = (day, meal, choice) => {
     const days = { ...this.state.days };
     days[day][meal].splice(days[day][meal].indexOf(choice), 1);
-    localStorage.setItem("days", JSON.stringify(days));
+    localStorage.setItem('days', JSON.stringify(days));
     this.setState({ days });
   };
   changePlanHandler = (type) => {
@@ -42,16 +45,36 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Modal show={this.state.showPlan} clicked={this.generatePlanHandler}>
-          <Plan meals={this.state.days} type={this.state.planType} />
+          {this.state.days ? (
+            <Plan meals={this.state.days} type={this.state.planType} />
+          ) : (
+            <Spinner />
+          )}
         </Modal>
         <Header
           changePlan={this.changePlanHandler}
           generatePlan={this.generatePlanHandler}
         />
-        <Body
-          days={this.state.days}
-          addMeal={this.addMealHandler}
-          removeMeal={this.removeMealHandler}
+        <Route
+          path="/"
+          exact
+          render={(props) =>
+            !!this.state.days ? (
+              <Body
+                {...props}
+                days={this.state.days}
+                addMeal={this.addMealHandler}
+                removeMeal={this.removeMealHandler}
+              />
+            ) : (
+              <Spinner />
+            )
+          }
+        />
+        <Route
+          path="/settings"
+          exact
+          render={(props) => (!!this.state.days ? <Settings /> : <Spinner />)}
         />
         <Footer />
       </BrowserRouter>
