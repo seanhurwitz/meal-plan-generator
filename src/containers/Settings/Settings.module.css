@@ -1,9 +1,49 @@
 .Settings {
   margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.Settings table {
+  padding: 10px;
+  width: 40%;
+  height: 100%;
+  border-spacing: 25px;
+}
+.Settings th {
+  width: 250px;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 30px;
+  border-right: 6px solid rgb(222, 212, 243);
+  padding-right: 10px;
+  color: mediumslateblue;
+}
+
+.Settings button {
+  border-radius: 4px;
+  width: 10%;
+  align-items: center;
+  margin: 4px;
+  height: 50px;
+}
+
+.Settings td {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: middle;
+}
+.Settings tr {
+  margin-bottom: 5px;
 }
 
 @media (max-width: 700px) {
   .Settings {
     margin-top: 80px;
   }
+}
+
+.PlanType {
+  display: flex;
 }

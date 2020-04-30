@@ -17,7 +17,7 @@ const radio = (props) => (
           id={option}
           name="choices"
           value={option}
-          defaultChecked={idx === 0}
+          checked={props.select ? props.select === option : idx === 0}
           onChange={() => props.change(option)}
         />
       </div>

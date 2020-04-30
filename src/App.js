@@ -13,6 +13,10 @@ class App extends Component {
     showPlan: false,
     addMeal: false,
     addMealContext: null,
+    settings: {
+      planType: 'Weekly',
+      startDay: 'Wednesday',
+    },
   };
 
   componentDidMount() {
@@ -50,6 +54,9 @@ class App extends Component {
       addMealContext,
     }));
   };
+  updateSettingsHandler = (settings) => {
+    this.setState({ settings: { ...settings } });
+  };
 
   render() {
     return (
@@ -60,7 +67,7 @@ class App extends Component {
           clicked={this.generatePlanHandler}
         >
           {this.state.days ? (
-            <Plan meals={this.state.days} type={this.state.planType} />
+            <Plan meals={this.state.days} settings={this.state.settings} />
           ) : (
             <Spinner />
           )}
@@ -111,7 +118,15 @@ class App extends Component {
           path="/settings"
           exact
           render={(props) =>
-            !!this.state.days ? <Settings {...props} /> : <Spinner />
+            this.state.settings ? (
+              <Settings
+                {...props}
+                update={this.updateSettingsHandler}
+                settings={{ ...this.state.settings }}
+              />
+            ) : (
+              <Spinner />
+            )
           }
         />
         <Footer />

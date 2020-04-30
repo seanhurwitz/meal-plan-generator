@@ -34,3 +34,11 @@
   justify-content: space-around;
   margin-bottom: 20px;
 }
+
+.PlanTypeSetting label {
+  color: mediumslateblue;
+}
+
+.PlanTypeSetting {
+  align-items: flex-start;
+}
