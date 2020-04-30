@@ -39,8 +39,44 @@
 }
 
 .Plan p {
-  height: 5px;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 30px;
+}
+
+.Meat {
+  background-color: rgb(255, 206, 206) !important;
+}
+
+.Dairy {
+  background-color: rgb(220, 240, 255) !important;
+}
+
+.Parev {
+  background-color: rgb(255, 236, 175) !important;
+}
+
+.Table {
+  border-collapse: collapse;
+  width: 100%;
+  color: mediumslateblue;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.Table tr:nth-child(even) {
+  background-color: rgb(230, 230, 230);
+}
+
+.Table th,
+td {
+  padding: 5px;
+  border: 1px solid white;
+}
+
+.TableHeader {
+  background-color: rgb(179, 174, 167);
+  color: white;
 }

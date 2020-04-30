@@ -54,7 +54,11 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Modal show={this.state.showPlan} clicked={this.generatePlanHandler}>
+        <Modal
+          config="Generate"
+          show={this.state.showPlan}
+          clicked={this.generatePlanHandler}
+        >
           {this.state.days ? (
             <Plan meals={this.state.days} type={this.state.planType} />
           ) : (
