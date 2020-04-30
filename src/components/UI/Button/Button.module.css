@@ -2,12 +2,13 @@
   border: 1px solid antiquewhite;
   border-radius: 10px;
   margin: 0 20px;
-  height: 80%;
-  width: 180px;
+  height: 70%;
+  width: 50%;
   font-size: 100%;
   font-weight: bold;
   color: mediumslateblue;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .Button:hover {
@@ -16,5 +17,10 @@
 }
 
 .Button:active {
-  font-size: 180%;
+  font-size: 120%;
+}
+
+.Button:disabled {
+  background-color: rgb(182, 179, 179);
+  color: rgb(224, 224, 224);
 }

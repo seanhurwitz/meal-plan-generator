@@ -16,3 +16,21 @@
   font-weight: bold;
   color: antiquewhite;
 }
+
+.Radio label[for='Meat'] {
+  color: rgb(128, 26, 26) !important;
+}
+
+.Radio label[for='Dairy'] {
+  color: rgb(86, 144, 192) !important;
+}
+
+.Radio label[for='Parev'] {
+  color: rgb(240, 206, 97) !important;
+}
+
+.MealTypes {
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}

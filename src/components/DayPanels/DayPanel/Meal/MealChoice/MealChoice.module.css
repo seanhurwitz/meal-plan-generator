@@ -8,6 +8,13 @@
   height: 22px;
 }
 
+.MealChoice p {
+  text-align: left;
+  white-space: nowrap;
+  font-size: 0.6vw;
+  overflow: hidden;
+}
+
 .Cancel {
   cursor: pointer;
   border: 1px solid lightcoral;
@@ -23,4 +30,35 @@
   font-weight: bold;
   background-color: lightcoral;
   color: antiquewhite;
+}
+
+.Type {
+  padding: 1px;
+  border-radius: 100px;
+  width: 12px;
+  height: 12px;
+  font-size: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.746);
+}
+
+.Meat {
+  background-color: rgb(212, 89, 89) !important;
+}
+
+.Dairy {
+  background-color: rgb(86, 144, 192) !important;
+}
+
+.Parev {
+  background-color: rgb(255, 204, 38) !important;
+}
+
+.RightButtons {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: space-between;
+}
+.RightButtons div {
+  margin: 2px;
 }

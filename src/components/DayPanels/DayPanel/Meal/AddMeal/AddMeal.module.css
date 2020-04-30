@@ -1,0 +1,11 @@
+.AddMeal {
+  width: 80%;
+  height: 50px;
+  margin-bottom: 15px;
+  border: 1px solid mediumslateblue;
+  color: mediumslateblue;
+  background-color: rgb(241, 235, 255);
+  font-size: 35px;
+  text-transform: uppercase;
+  padding: 3px;
+}

@@ -1,61 +1,35 @@
-import React, { Component } from 'react';
+import React, { Fragment, useContext } from 'react';
 import MealChoice from './MealChoice';
 import classes from './Meal.module.css';
+import { AddMealModalContext } from '../../../../context';
 
-class Meal extends Component {
-  state = {
-    input: '',
-  };
-  inputChangeHandler = (event) => {
-    this.setState({ input: event.target.value });
-  };
-  addMealHandler = (event) => {
-    event.preventDefault();
-    const alreadyHasMeal = this.props.choices.some(
-      (choice) =>
-        choice.trim().toUpperCase() === this.state.input.trim().toUpperCase(),
-    );
-    if (!alreadyHasMeal) {
-      this.props.addMeal(this.props.day, this.props.meal, this.state.input);
-      this.setState({ input: '' });
-    } else {
-      this.setState({ input: 'VALUE ALREADY FOUND!!!' });
-      setTimeout(() => {
-        this.setState({ input: '' });
-      }, 500);
-    }
-  };
-  render() {
-    const inputTextId = `myInputText${this.props.day}${this.props.meal}`;
-    return (
+const Meal = (props) => {
+  const addingMeal = useContext(AddMealModalContext);
+  return (
+    <Fragment>
       <div className={classes.Meal}>
-        <h5>{this.props.meal}</h5>
+        <section className={classes.Title}>
+          <h5>
+            {props.meal} ({props.choices.length})
+          </h5>
+          <p onClick={() => addingMeal(props.day, props.meal)}>+</p>
+        </section>
         <div className={classes.MealChoiceBox}>
-          {' '}
-          {this.props.choices.length > 0 &&
-            this.props.choices.map((choice, idx) => (
+          {props.choices.length > 0 &&
+            props.choices.map((choice, idx) => (
               <MealChoice
                 key={idx}
                 choice={choice}
-                removeMeal={this.props.removeMeal}
-                day={this.props.day}
-                meal={this.props.meal}
+                removeMeal={props.removeMeal}
+                day={props.day}
+                meal={props.meal}
               />
             ))}
         </div>
-        <form onSubmit={this.addMealHandler}>
-          <input
-            type="text"
-            id={inputTextId}
-            style={{ width: '100%' }}
-            onChange={this.inputChangeHandler}
-            value={this.state.input}
-          />
-          <input type="submit" value="+" disabled={!this.state.input.trim()} />
-        </form>
       </div>
-    );
-  }
-}
+    </Fragment>
+  );
+  // }
+};
 
 export default Meal;

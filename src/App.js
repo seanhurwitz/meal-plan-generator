@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { Header, Modal, Plan, Footer, Spinner } from './components';
+import { Header, Modal, Plan, Footer, Spinner, AddMeal } from './components';
 import { Body, Settings } from './containers';
+import { AddMealModalContext } from './context';
 import './App.css';
 import generateStartingData from './generate-starting-data';
 
@@ -10,15 +11,17 @@ class App extends Component {
     days: null,
     planType: 'Today',
     showPlan: false,
+    addMeal: false,
+    addMealContext: null,
   };
 
   componentDidMount() {
-    console.log('mounted');
     const days = JSON.parse(localStorage.getItem('days'));
     if (typeof days === 'object' && days) {
       this.setState({ days });
     } else {
-      this.setState({ days: generateStartingData() });
+      const days = generateStartingData();
+      this.setState({ days });
     }
   }
 
@@ -26,7 +29,7 @@ class App extends Component {
     const days = { ...this.state.days };
     days[day][meal].push(newMeal);
     localStorage.setItem('days', JSON.stringify(days));
-    this.setState({ days });
+    this.setState({ days, addMeal: false });
   };
   removeMealHandler = (day, meal, choice) => {
     const days = { ...this.state.days };
@@ -40,6 +43,13 @@ class App extends Component {
   generatePlanHandler = () => {
     this.setState((prevState) => ({ showPlan: !prevState.showPlan }));
   };
+  isMealAddingHandler = (day = null, meal = null) => {
+    const addMealContext = day && meal ? { day, meal } : null;
+    this.setState((prevState) => ({
+      addMeal: !prevState.addMeal,
+      addMealContext,
+    }));
+  };
 
   render() {
     return (
@@ -51,30 +61,54 @@ class App extends Component {
             <Spinner />
           )}
         </Modal>
+        <Modal
+          config="AddMeal"
+          show={this.state.addMeal}
+          clicked={this.isMealAddingHandler}
+        >
+          {this.state.addMealContext ? (
+            <AddMeal
+              context={this.state.addMealContext}
+              addMeal={this.addMealHandler}
+              existingMeals={
+                this.state.days[this.state.addMealContext.day][
+                  this.state.addMealContext.meal
+                ]
+              }
+            />
+          ) : (
+            <Spinner />
+          )}
+        </Modal>
         <Header
           changePlan={this.changePlanHandler}
           generatePlan={this.generatePlanHandler}
         />
-        <Route
-          path="/"
-          exact
-          render={(props) =>
-            !!this.state.days ? (
-              <Body
-                {...props}
-                days={this.state.days}
-                addMeal={this.addMealHandler}
-                removeMeal={this.removeMealHandler}
-              />
-            ) : (
-              <Spinner />
-            )
-          }
-        />
+        <AddMealModalContext.Provider value={this.isMealAddingHandler}>
+          <Route
+            path="/"
+            exact
+            render={(props) =>
+              !!this.state.days ? (
+                <Body
+                  {...props}
+                  days={this.state.days}
+                  addingMeal={this.isMealAddingHandler}
+                  removeMeal={this.removeMealHandler}
+                />
+              ) : (
+                <Spinner />
+              )
+            }
+          />
+        </AddMealModalContext.Provider>
+
         <Route
           path="/settings"
           exact
-          render={(props) => (!!this.state.days ? <Settings /> : <Spinner />)}
+          render={(props) =>
+            !!this.state.days ? <Settings {...props} /> : <Spinner />
+          }
         />
         <Footer />
       </BrowserRouter>
